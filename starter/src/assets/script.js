@@ -56,6 +56,9 @@ products.push(productStrawberry);
 /* Declare an empty array named cart to hold the items in the cart */
 const cart = [];
 
+// Global Variable to store the total amount paid at checkout
+let totalPaid = 0;
+
 /* Create a function named addProductToCart that takes in the product productId as an argument
   - addProductToCart should get the correct product based on the productId
   - addProductToCart should then increase the product's quantity
@@ -166,23 +169,24 @@ function removeProductFromCart(productId){
 */
 function cartTotal(){
 
-  // declare and initialize variable for totalOfProducts
-  // we initialize it here and not inside the for loop, to avoid block scope, since we will need to return it after the loop
-  let totalOfProducts = 0;
+  // refactored to global scope at the top *let totalPaid = 0;*
 
     for(const item of cart){
 
       
-      totalOfProducts = totalOfProducts + (item.quantity * item.price);
+      totalPaid = totalPaid + (item.quantity * item.price);
 
     }
 
-       return totalOfProducts;
+       return totalPaid;
 
 }
 
 /* Create a function called emptyCart that empties the products from the cart */
 function emptyCart(){
+
+    // deletes all items within the cart array by splicing from index 0 
+      cart.splice(0, cart.length);
 
 }
 
@@ -191,6 +195,16 @@ function emptyCart(){
   - pay will return a positive number if money should be returned to customer
 */
 function pay(amount){
+
+      let balance = 0;
+
+      balance = amount - totalPaid;
+
+      if(balance < 0){
+          return balance;
+      }else{
+          return balance;
+      }
 
 }
 
