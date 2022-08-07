@@ -149,8 +149,9 @@ function removeProductFromCart(productId){
     //Finds the actual product using the productId, sets the quantity to 0 and then removes the product from cart
     if(product.productId === productId){
 
-      product.quantity = 0;
+      
       cart.splice(cart.indexOf(product), 1);
+      product.quantity = 0;
 
     }
 
