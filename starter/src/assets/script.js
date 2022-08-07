@@ -43,9 +43,15 @@ const productStrawberry = {
 */
 
 // Adding each product object to the "products" array 
-products[0] = productCherry;
-products[1] = productOrange;
-products[2] = productStrawberry;
+// products[0] = productCherry;
+// products[1] = productOrange;
+// products[2] = productStrawberry;
+
+//Refactored approach to add product to the products array using push() function
+// OBS: I observed more products can be added if we create more product objects
+products.push(productCherry);
+products.push(productOrange);
+products.push(productStrawberry);
 
 /* Declare an empty array named cart to hold the items in the cart */
 const cart = [];
