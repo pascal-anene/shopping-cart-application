@@ -49,9 +49,8 @@ const productStrawberry = {
 
 //Refactored approach to add product to the products array using push() function
 // OBS: I observed more products can be added if we create more product objects
-products.push(productCherry);
-products.push(productOrange);
-products.push(productStrawberry);
+products.push(productCherry,productOrange,productStrawberry);
+
 
 /* Declare an empty array named cart to hold the items in the cart */
 const cart = [];
@@ -127,6 +126,13 @@ function decreaseQuantity(productId){
 
       product.quantity -= 1;
 
+
+        // if(cart.indexOf(product) !== -1){
+        //     //We should recalculate the totalPaid here after decreasing the quantity
+        //     totalPaid = totalPaid - (product.quantity * product.price);
+        //     return totalPaid;
+        // }
+
         //If the quantity reaches zero, the product is removed from the cart array or simply cart
         if(product.quantity === 0){
 
@@ -135,6 +141,8 @@ function decreaseQuantity(productId){
         }
 
     }
+
+     
 
   }
 
@@ -196,10 +204,12 @@ function emptyCart(){
 */
 function pay(amount){
 
+      //declare and initialize variable to hold balance after cash received is deducted from the total to be paid totalPaid (global variable)
       let balance = 0;
 
       balance = amount - totalPaid;
 
+      //If balance is negative, then return negative value or else return positive value 
       if(balance < 0){
           return balance;
       }else{
