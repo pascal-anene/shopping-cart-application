@@ -115,6 +115,24 @@ function increaseQuantity(productId){
 */
 function decreaseQuantity(productId){
 
+  //Loops through the products array to find the product
+  for(const product of products){
+
+    //Finds the actual product using the productId and increases quantity
+    if(product.productId === productId){
+
+      product.quantity -= 1;
+
+        if(product.quantity === 0){
+
+            cart.splice(cart.indexOf(product), 1);
+            
+        }
+
+    }
+
+  }
+
 }
 
 /* Create a function named removeProductFromCart that takes in the productId as an argument
