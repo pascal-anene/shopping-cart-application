@@ -123,6 +123,7 @@ function decreaseQuantity(productId){
 
       product.quantity -= 1;
 
+        //If the quantity reaches zero, the product is removed from the cart array or simply cart
         if(product.quantity === 0){
 
             cart.splice(cart.indexOf(product), 1);
