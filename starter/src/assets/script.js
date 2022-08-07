@@ -70,6 +70,7 @@ function addProductToCart(productId){
         if(product.productId === productId){
           
           //Checks if product already exists in the cart and increases quantity or add to cart if nonexistent
+          //We can also implement this functionality using indexOf(); I wanted to try something different with includes()
             if(cart.includes(product)){
 
               product.quantity += 1;
