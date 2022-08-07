@@ -63,10 +63,13 @@ const cart = [];
 */
 function addProductToCart(productId){
 
+  //Loops through the products array
     for(const product of products){
 
+      //Finds the actual product using the productId
         if(product.productId === productId){
           
+          //Checks if product already exists in the cart and increases quantity or add to cart if nonexistent
             if(cart.includes(product)){
 
               product.quantity += 1;
@@ -75,7 +78,7 @@ function addProductToCart(productId){
 
               product.quantity += 1;
               cart.push(product);
-              
+
             }
 
         }
@@ -90,6 +93,18 @@ function addProductToCart(productId){
   - increaseQuantity should then increase the product's quantity
 */
 function increaseQuantity(productId){
+
+  //Loops through the products array to find the product
+    for(const product of products){
+
+      //Finds the actual product using the productId and increases quantity
+      if(product.productId === productId){
+
+        product.quantity += 1;
+
+      }
+
+    }
 
 }
 
