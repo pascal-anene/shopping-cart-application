@@ -149,7 +149,7 @@ function removeProductFromCart(productId){
     //Finds the actual product using the productId, sets the quantity to 0 and then removes the product from cart
     if(product.productId === productId){
 
-      
+      //Removes single product from cart and set quantity back to 0
       cart.splice(cart.indexOf(product), 1);
       product.quantity = 0;
 
@@ -164,6 +164,19 @@ function removeProductFromCart(productId){
   - cartTotal should return the sum of the products in the cart
 */
 function cartTotal(){
+
+  // declare and initialize variable for totalOfProducts
+  // we initialize it here and not inside the for loop, to avoid block scope, since we will need to return it after the loop
+  let totalOfProducts = 0;
+
+    for(const item of cart){
+
+      
+      totalOfProducts = totalOfProducts + (item.quantity * item.price);
+
+    }
+
+       return totalOfProducts;
 
 }
 
