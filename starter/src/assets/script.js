@@ -63,6 +63,26 @@ const cart = [];
 */
 function addProductToCart(productId){
 
+    for(const product of products){
+
+        if(product.productId === productId){
+          
+            if(cart.includes(product)){
+
+              product.quantity += 1;
+
+            }else{
+
+              product.quantity += 1;
+              cart.push(product);
+              
+            }
+
+        }
+
+    }
+
+
 }
 
 /* Create a function named increaseQuantity that takes in the productId as an argument
@@ -109,7 +129,7 @@ function emptyCart(){
   - pay will return a positive number if money should be returned to customer
 */
 function pay(amount){
-  
+
 }
 
 /* Place stand out suggestions here (stand out suggestions can be found at the bottom of the project rubric.)*/
