@@ -69,7 +69,7 @@ function addProductToCart(productId){
     for(const product of products){
 
       //Finds the actual product using the productId
-        if(product.productId === productId){
+        if(matchProduct(product,productId)){
           
           //Checks if product already exists in the cart and increases quantity or add to cart if nonexistent
           //We can also implement this functionality using indexOf(); I wanted to try something different with includes()
@@ -101,7 +101,7 @@ function increaseQuantity(productId){
     for(const product of products){
 
       //Finds the actual product using the productId and increases quantity
-      if(product.productId === productId){
+      if(matchProduct(product,productId)){
 
         product.quantity += 1;
 
@@ -122,7 +122,7 @@ function decreaseQuantity(productId){
   for(const product of products){
 
     //Finds the actual product using the productId and increases quantity
-    if(product.productId === productId){
+    if(matchProduct(product,productId)){
 
       product.quantity -= 1;
 
@@ -159,7 +159,7 @@ function removeProductFromCart(productId){
   for(const product of products){
 
     //Finds the actual product using the productId, sets the quantity to 0 and then removes the product from cart
-    if(product.productId === productId){
+    if(matchProduct(product,productId)){
 
       //Removes single product from cart and set quantity back to 0
       cart.splice(cart.indexOf(product), 1);
@@ -217,6 +217,13 @@ function pay(amount){
       }
 
 }
+
+//helper function for matching product in product array
+function matchProduct(product, productId){
+  return product.productId === productId;
+}
+
+//helper function to increase product quanity 
 
 /* Place stand out suggestions here (stand out suggestions can be found at the bottom of the project rubric.)*/
 
