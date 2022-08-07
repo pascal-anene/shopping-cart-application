@@ -143,6 +143,19 @@ function decreaseQuantity(productId){
 */
 function removeProductFromCart(productId){
 
+  //Loops through the products array to find the product
+  for(const product of products){
+
+    //Finds the actual product using the productId, sets the quantity to 0 and then removes the product from cart
+    if(product.productId === productId){
+
+      product.quantity = 0;
+      cart.splice(cart.indexOf(product), 1);
+
+    }
+
+  }
+
 }
 
 /* Create a function named cartTotal that has no parameters
