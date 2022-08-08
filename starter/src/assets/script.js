@@ -202,7 +202,7 @@ function emptyCart(){
   - pay will return a negative number if there is a remaining balance
   - pay will return a positive number if money should be returned to customer
 */
-function pay(amount){
+function pay(amount) {
 
       //declare and initialize variable to hold balance after cash received is deducted from the total to be paid totalPaid (global variable)
       let balance = 0;

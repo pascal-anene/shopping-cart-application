@@ -10,6 +10,7 @@
   "author": "",
   "license": "SEE LICENSE IN LICENSE.md",
   "dependencies": {
+    "eslint": "^8.21.0",
     "jest": "^27.5.1",
     "live-server": "^1.1.0"
   }
