@@ -142,21 +142,17 @@ function decreaseQuantity(productId){
   - removeProductFromCart should update the product quantity to 0
   - removeProductFromCart should remove the product from the cart
 */
+// refactored to use helper function with find() array method
+
 function removeProductFromCart(productId){
 
   //Loops through the products array to find the product
-  for(const product of products){
+  // Here we loop through the products array because we intend to set the original quantity back to 0
+  let product = getProductByIdFromList(productId, products);
 
-    //Finds the actual product using the productId, sets the quantity to 0 and then removes the product from cart
-    if(matchProduct(product,productId)){
-
-      //Removes single product from cart and set quantity back to 0
+      //Removes product from cart and set quantity back to 0 in the products array list
       cart.splice(cart.indexOf(product), 1);
       product.quantity = 0;
-
-    }
-
-  }
 
 }
 
