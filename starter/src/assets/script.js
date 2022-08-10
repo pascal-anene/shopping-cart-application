@@ -90,19 +90,33 @@ function addProductToCart(productId){
   - increaseQuantity should get the correct product based on the productId
   - increaseQuantity should then increase the product's quantity
 */
+// function increaseQuantity(productId){
+
+//   //Loops through the products array to find the product
+//     for(const product of products){
+
+//       //Finds the actual product using the productId and increases quantity
+//       if(matchProduct(product,productId)){
+
+//         product.quantity += 1;
+
+//       }
+
+//     }
+
+// }
+
 function increaseQuantity(productId){
 
-  //Loops through the products array to find the product
-    for(const product of products){
+  //Loops through the products array to find the product using the helper function
+    let product = getProductByIdFromList(productId, cart);
 
-      //Finds the actual product using the productId and increases quantity
-      if(matchProduct(product,productId)){
+      //If the product exists in the cart, then increase quantity by 1
+      if(cart.includes(product)){
 
         product.quantity += 1;
 
       }
-
-    }
 
 }
 
