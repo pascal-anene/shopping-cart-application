@@ -63,13 +63,13 @@ let totalPaid = 0;
   - addProductToCart should then increase the product's quantity
   - if the product is not already in the cart, add it to the cart
 */
+
+// Refactored addProductToCart() based on feedback from review
+
 function addProductToCart(productId){
 
-  //Loops through the products array
-    for(const product of products){
-
-      //Finds the actual product using the productId
-        if(matchProduct(product,productId)){
+  //Loops through the products array using find() in helper and returns the product 
+    let product = getProductByIdFromList(productId, products);
           
           //Checks if product already exists in the cart and increases quantity or add to cart if nonexistent
           //We can also implement this functionality using indexOf(); I wanted to try something different with includes()
@@ -83,11 +83,6 @@ function addProductToCart(productId){
               cart.push(product);
 
             }
-
-        }
-
-    }
-
 
 }
 
@@ -223,7 +218,9 @@ function matchProduct(product, productId){
   return product.productId === productId;
 }
 
-//helper function to increase product quanity 
+function getProductByIdFromList(productId, productList) {
+  return productList.find((product) => product.productId === productId);
+}
 
 /* Place stand out suggestions here (stand out suggestions can be found at the bottom of the project rubric.)*/
 
