@@ -90,21 +90,7 @@ function addProductToCart(productId){
   - increaseQuantity should get the correct product based on the productId
   - increaseQuantity should then increase the product's quantity
 */
-// function increaseQuantity(productId){
-
-//   //Loops through the products array to find the product
-//     for(const product of products){
-
-//       //Finds the actual product using the productId and increases quantity
-//       if(matchProduct(product,productId)){
-
-//         product.quantity += 1;
-
-//       }
-
-//     }
-
-// }
+// Refactored this function to use helper function and access cart and not products array
 
 function increaseQuantity(productId){
 
@@ -125,14 +111,14 @@ function increaseQuantity(productId){
   - decreaseQuantity should decrease the quantity of the product
   - if the function decreases the quantity to 0, the product is removed from the cart
 */
+// refactored function to use helper function with find() array methond and access cart and not products list
+
 function decreaseQuantity(productId){
 
-  //Loops through the products array to find the product
-  for(const product of products){
+  //Loops through the products array to find the product using the helper function
+  let product = getProductByIdFromList(productId, cart);
 
     //Finds the actual product using the productId and increases quantity
-    if(matchProduct(product,productId)){
-
       product.quantity -= 1;
 
 
@@ -148,12 +134,6 @@ function decreaseQuantity(productId){
             cart.splice(cart.indexOf(product), 1);
             
         }
-
-    }
-
-     
-
-  }
 
 }
 
