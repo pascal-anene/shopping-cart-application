@@ -1,4 +1,3 @@
-
 /* Create an array named products which you will use to add all of your product object literals that you create in the next step. */
 
 // Created products array to hold all product objects
@@ -20,35 +19,35 @@ let products = [];
 */
 
 const productCherry = {
-          name: "Cherry",
-          price: 4,
-          quantity: 0,
-          productId: 100,
-          image: "images/cherry.jpg"
+    name: "Cherry",
+    price: 4,
+    quantity: 0,
+    productId: 100,
+    image: "images/cherry.jpg"
 }
 
 const productOrange = {
-          name: "Orange",
-          price: 5,
-          quantity: 0,
-          productId: 101,
-          image: "images/orange.jpg"
+    name: "Orange",
+    price: 5,
+    quantity: 0,
+    productId: 101,
+    image: "images/orange.jpg"
 
 }
 
 const productStrawberry = {
-          name: "Strawberry",
-          price: 10,
-          quantity: 0,
-          productId: 102,
-          image: "images/strawberry.jpg"
+    name: "Strawberry",
+    price: 10,
+    quantity: 0,
+    productId: 102,
+    image: "images/strawberry.jpg"
 }
 
 
 //Refactored approach to add product to the products array using push() function
 // OBS: I observed more products can be added if we create more product objects
 
-products.push(productCherry,productOrange,productStrawberry);
+products.push(productCherry, productOrange, productStrawberry);
 
 
 /* Declare an empty array named cart to hold the items in the cart */
@@ -68,23 +67,23 @@ let remainingBalance = 0;
 
 // Refactored addProductToCart() based on feedback from review
 
-function addProductToCart(productId){
+function addProductToCart(productId) {
 
-  //Loops through the products array using find() in helper and returns the product 
+    //Loops through the products array using find() in helper and returns the product 
     let product = getProductByIdFromList(productId, products);
-          
-          //Checks if product already exists in the cart and increases quantity or add to cart if nonexistent
-          //We can also implement this functionality using indexOf(); I wanted to try something different with includes()
-            if(cart.includes(product)){
 
-              product.quantity += 1;
+    //Checks if product already exists in the cart and increases quantity or add to cart if nonexistent
+    //We can also implement this functionality using indexOf(); I wanted to try something different with includes()
+    if (cart.includes(product)) {
 
-            }else{
+        product.quantity += 1;
 
-              product.quantity += 1;
-              cart.push(product);
+    } else {
 
-            }
+        product.quantity += 1;
+        cart.push(product);
+
+    }
 
 }
 
@@ -94,15 +93,15 @@ function addProductToCart(productId){
 */
 // Refactored this function to use helper function and access cart and not products array
 
-function increaseQuantity(productId){
+function increaseQuantity(productId) {
 
-  //Loops through the products array to find the product using the helper function
+    //Loops through the products array to find the product using the helper function
     let product = getProductByIdFromList(productId, cart);
 
-      //If the product exists in the cart, then increase quantity by 1
-      product.quantity += 1;
+    //If the product exists in the cart, then increase quantity by 1
+    product.quantity += 1;
 
-      
+
 
 }
 
@@ -113,21 +112,21 @@ function increaseQuantity(productId){
 */
 // refactored function to use helper function with find() array methond and access cart and not products list
 
-function decreaseQuantity(productId){
+function decreaseQuantity(productId) {
 
-  //Loops through the products array to find the product using the helper function
-  let product = getProductByIdFromList(productId, cart);
+    //Loops through the products array to find the product using the helper function
+    let product = getProductByIdFromList(productId, cart);
 
     //Finds the actual product using the productId and increases quantity
-      product.quantity -= 1;
+    product.quantity -= 1;
 
 
-        //If the quantity reaches zero, the product is removed from the cart array or simply cart
-        if(product.quantity === 0){
+    //If the quantity reaches zero, the product is removed from the cart array or simply cart
+    if (product.quantity === 0) {
 
-            cart.splice(cart.indexOf(product), 1);
-            
-        };
+        cart.splice(cart.indexOf(product), 1);
+
+    };
 
 }
 
@@ -138,15 +137,15 @@ function decreaseQuantity(productId){
 */
 // refactored to use helper function with find() array method
 
-function removeProductFromCart(productId){
+function removeProductFromCart(productId) {
 
-  //Loops through the products array to find the product
-  // Here we loop through the products array because we intend to set the original quantity back to 0
-  let product = getProductByIdFromList(productId, cart);
+    //Loops through the products array to find the product
+    // Here we loop through the products array because we intend to set the original quantity back to 0
+    let product = getProductByIdFromList(productId, cart);
 
-      //Removes product from cart and set quantity back to 0 in the products array list
-      product.quantity = 0;
-      cart.splice(cart.indexOf(product), 1);
+    //Removes product from cart and set quantity back to 0 in the products array list
+    product.quantity = 0;
+    cart.splice(cart.indexOf(product), 1);
 
 }
 
@@ -157,30 +156,30 @@ function removeProductFromCart(productId){
 // refactored cartTotal() 
 
 
-function cartTotal(){
+function cartTotal() {
 
-  // refactored to local scope variable totalCart
-  totalCart = 0;
+    // refactored to local scope variable totalCart
+    totalCart = 0;
 
 
-    for(const product of cart){
+    for (const product of cart) {
 
-      
-      totalCart += (product.quantity * product.price);
 
-      } 
+        totalCart += (product.quantity * product.price);
 
-      return totalCart;
+    }
+
+    return totalCart;
 
 }
 
 
 
 /* Create a function called emptyCart that empties the products from the cart */
-function emptyCart(){
+function emptyCart() {
 
     // deletes all items within the cart array by splicing from index 0 
-      cart.splice(0, cart.length);
+    cart.splice(0, cart.length);
 
 }
 
@@ -191,21 +190,21 @@ function emptyCart(){
 function pay(amount) {
 
     // 
-      
-    if(remainingBalance == 0 && cart.length != 0){
 
-       
-      remainingBalance = remainingBalance + (amount - totalCart);
+    if (remainingBalance == 0 && cart.length != 0) {
 
-      // By calling emptyCart() we ensure that after the first payment, the cart is set to empty
-      // This will affect the cartTotal() function because, now quantity, and product and therefore totalCart will be 0
-      emptyCart();
 
-      return remainingBalance;
+        remainingBalance = remainingBalance + (amount - totalCart);
 
-    }else{
+        // By calling emptyCart() we ensure that after the first payment, the cart is set to empty
+        // This will affect the cartTotal() function because, now quantity, and product and therefore totalCart will be 0
+        emptyCart();
 
-      return remainingBalance = remainingBalance + amount;
+        return remainingBalance;
+
+    } else {
+
+        return remainingBalance = remainingBalance + amount;
 
     }
 
@@ -215,7 +214,7 @@ function pay(amount) {
 
 
 function getProductByIdFromList(productId, productList) {
-  return productList.find((product) => product.productId === productId);
+    return productList.find((product) => product.productId === productId);
 }
 
 /* Place stand out suggestions here (stand out suggestions can be found at the bottom of the project rubric.)*/
@@ -228,17 +227,15 @@ function getProductByIdFromList(productId, productList) {
 */
 
 module.exports = {
-   products,
-   cart,
-   addProductToCart,
-   increaseQuantity,
-   decreaseQuantity,
-   removeProductFromCart,
-   cartTotal,
-   pay, 
-   emptyCart,
-   /* Uncomment the following line if completing the currency converter bonus */
-   // currency
-} 
-
-
+    products,
+    cart,
+    addProductToCart,
+    increaseQuantity,
+    decreaseQuantity,
+    removeProductFromCart,
+    cartTotal,
+    pay,
+    emptyCart,
+    /* Uncomment the following line if completing the currency converter bonus */
+    // currency
+}
