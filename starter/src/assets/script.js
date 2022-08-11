@@ -1,7 +1,8 @@
+
 /* Create an array named products which you will use to add all of your product object literals that you create in the next step. */
 
 // Created products array to hold all product objects
-const products = [];
+let products = [];
 
 /* Create 3 or more product objects using object literal notation 
    Each product should include five properties
@@ -11,6 +12,13 @@ const products = [];
    - productId: unique id for the product (number)
    - image: picture of product (url string)
 */
+
+/* Images provided in /images folder. All images from Unsplash.com
+   - cherry.jpg by Mae Mu
+   - orange.jpg by Mae Mu
+   - strawberry.jpg by Allec Gomes
+*/
+
 const productCherry = {
           name: "Cherry",
           price: 4,
@@ -36,27 +44,21 @@ const productStrawberry = {
           image: "images/strawberry.jpg"
 }
 
-/* Images provided in /images folder. All images from Unsplash.com
-   - cherry.jpg by Mae Mu
-   - orange.jpg by Mae Mu
-   - strawberry.jpg by Allec Gomes
-*/
-
-// Adding each product object to the "products" array 
-// products[0] = productCherry;
-// products[1] = productOrange;
-// products[2] = productStrawberry;
 
 //Refactored approach to add product to the products array using push() function
 // OBS: I observed more products can be added if we create more product objects
+
 products.push(productCherry,productOrange,productStrawberry);
 
 
 /* Declare an empty array named cart to hold the items in the cart */
-const cart = [];
+let cart = [];
+
+// Global Variable to store the total amount in cart 
+let totalCart;
 
 // Global Variable to store the total amount paid at checkout
-let totalPaid = 0;
+// let totalPaid = 0;
 
 /* Create a function named addProductToCart that takes in the product productId as an argument
   - addProductToCart should get the correct product based on the productId
@@ -98,11 +100,9 @@ function increaseQuantity(productId){
     let product = getProductByIdFromList(productId, cart);
 
       //If the product exists in the cart, then increase quantity by 1
-      if(cart.includes(product)){
+      product.quantity += 1;
 
-        product.quantity += 1;
-
-      }
+      
 
 }
 
@@ -122,18 +122,12 @@ function decreaseQuantity(productId){
       product.quantity -= 1;
 
 
-        // if(cart.indexOf(product) !== -1){
-        //     //We should recalculate the totalPaid here after decreasing the quantity
-        //     totalPaid = totalPaid - (product.quantity * product.price);
-        //     return totalPaid;
-        // }
-
         //If the quantity reaches zero, the product is removed from the cart array or simply cart
         if(product.quantity === 0){
 
             cart.splice(cart.indexOf(product), 1);
             
-        }
+        };
 
 }
 
@@ -148,11 +142,11 @@ function removeProductFromCart(productId){
 
   //Loops through the products array to find the product
   // Here we loop through the products array because we intend to set the original quantity back to 0
-  let product = getProductByIdFromList(productId, products);
+  let product = getProductByIdFromList(productId, cart);
 
       //Removes product from cart and set quantity back to 0 in the products array list
-      cart.splice(cart.indexOf(product), 1);
       product.quantity = 0;
+      cart.splice(cart.indexOf(product), 1);
 
 }
 
@@ -160,20 +154,27 @@ function removeProductFromCart(productId){
   - cartTotal should iterate through the cart to get the total of all products
   - cartTotal should return the sum of the products in the cart
 */
+// refactored cartTotal() 
+
+
 function cartTotal(){
 
-  // refactored to global scope at the top *let totalPaid = 0;*
+  // refactored to local scope variable totalCart
+  totalCart = 0;
 
-    for(const item of cart){
+
+    for(const product of cart){
 
       
-      totalPaid = totalPaid + (item.quantity * item.price);
+      totalCart = totalCart + (product.quantity * product.price);
 
-    }
+      } 
 
-       return totalPaid;
+      return totalCart;
 
 }
+
+
 
 /* Create a function called emptyCart that empties the products from the cart */
 function emptyCart(){
@@ -189,13 +190,13 @@ function emptyCart(){
 */
 function pay(amount) {
 
-      //declare and initialize variable to hold balance after cash received is deducted from the total to be paid totalPaid (global variable)
+      //declare and initialize variable to hold balance after cash received is deducted from the total to be paid totalCart (global variable)
       let balance = 0;
 
-      balance = amount - totalPaid;
+      balance = amount - totalCart;
 
       //If balance is negative, then return negative value or else return positive value 
-      if(balance < 0){
+      if(balance <= 0){
           return balance;
       }else{
           return balance;
@@ -203,10 +204,7 @@ function pay(amount) {
 
 }
 
-//helper function for matching product in product array
-function matchProduct(product, productId){
-  return product.productId === productId;
-}
+
 
 function getProductByIdFromList(productId, productList) {
   return productList.find((product) => product.productId === productId);
@@ -233,4 +231,6 @@ module.exports = {
    emptyCart,
    /* Uncomment the following line if completing the currency converter bonus */
    // currency
-}
+} 
+
+
