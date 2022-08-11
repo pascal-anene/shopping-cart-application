@@ -57,8 +57,8 @@ let cart = [];
 // Global Variable to store the total amount in cart 
 let totalCart;
 
-// Global Variable to store the total amount paid at checkout
-// let totalPaid = 0;
+// Global Variable to store the remaining balance of after amount received is deducted from total in Cart
+let remainingBalance = 0;
 
 /* Create a function named addProductToCart that takes in the product productId as an argument
   - addProductToCart should get the correct product based on the productId
@@ -166,7 +166,7 @@ function cartTotal(){
     for(const product of cart){
 
       
-      totalCart = totalCart + (product.quantity * product.price);
+      totalCart += (product.quantity * product.price);
 
       } 
 
@@ -190,17 +190,25 @@ function emptyCart(){
 */
 function pay(amount) {
 
-      //declare and initialize variable to hold balance after cash received is deducted from the total to be paid totalCart (global variable)
-      let balance = 0;
+    // 
+      
+    if(remainingBalance == 0 && cart.length != 0){
 
-      balance = amount - totalCart;
+       
+      remainingBalance = remainingBalance + (amount - totalCart);
 
-      //If balance is negative, then return negative value or else return positive value 
-      if(balance <= 0){
-          return balance;
-      }else{
-          return balance;
-      }
+      // By calling emptyCart() we ensure that after the first payment, the cart is set to empty
+      // This will affect the cartTotal() function because, now quantity, and product and therefore totalCart will be 0
+      emptyCart();
+
+      return remainingBalance;
+
+    }else{
+
+      return remainingBalance = remainingBalance + amount;
+
+    }
+
 
 }
 
